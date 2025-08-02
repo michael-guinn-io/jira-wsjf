@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ForgeReconciler, { Text } from '@forge/react';
 import { invoke } from '@forge/bridge';
+import WSJFWorkspace from "./WSJFWorkspace/WSJFWorkspace";
 
 const App = () => {
   const [data, setData] = useState(null);
@@ -9,8 +10,7 @@ const App = () => {
   }, []);
   return (
     <>
-      <Text>Hello world!</Text>
-      <Text>{data ? data : 'Loading...'}</Text>
+      <WSJFWorkspace />
     </>
   );
 };

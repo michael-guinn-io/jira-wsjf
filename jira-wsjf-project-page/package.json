@@ -5,7 +5,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lint": "eslint src/**/*"
+    "deploy": "npm run login && forge deploy",
+    "dev": "npm run login && forge tunnel",
+    "lint": "eslint src/**/* && forge lint",
+    "login": "forge login -u $FORGE_EMAIL -t $FORGE_API_TOKEN",
+    "logout": "forge logout"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

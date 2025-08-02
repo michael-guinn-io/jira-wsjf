@@ -5,7 +5,7 @@ modules:
       resolver:
         function: resolver
       render: native
-      title: jira-wsjf-project-page
+      title: WSFJ Workbench
   function:
     - key: resolver
       handler: index.handler
