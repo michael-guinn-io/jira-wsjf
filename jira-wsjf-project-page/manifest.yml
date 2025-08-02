@@ -1,4 +1,33 @@
 modules:
+  jira:customField:
+    - key: jira-wsjf-business-value-field
+      name: WSJF Business Value
+      description: The relative value to the customer or to the business
+      type: number
+      edit:
+        validation:
+          expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
+    - key: jira-wsjf-time-criticality-field
+      name: WSJF Time Criticality
+      description: The relative rate of delay cost over time
+      type: number
+      edit:
+        validation:
+          expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
+    - key: jira-wsjf-opportunity-enablement-risk-reduction-field
+      name: WSJF Opportunity Enablement/Risk Reduction
+      description: The relative value in enabling other valuable work or reducing risk
+      type: number
+      edit:
+        validation:
+          expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
+    - key: jira-wsjf-job-size-field
+      name: WSJF Job Size
+      description: The relative job duration
+      type: number
+      edit:
+        validation:
+          expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
   jira:projectPage:
     - key: jira-wsjf-project-page
       resource: main
@@ -9,6 +38,11 @@ modules:
   function:
     - key: resolver
       handler: index.handler
+permissions:
+  scopes:
+    - read:jira-work
+    - write:jira-work
+    - manage:jira-project
 resources:
   - key: main
     path: src/frontend/index.jsx
