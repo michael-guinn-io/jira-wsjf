@@ -5,6 +5,7 @@ modules:
       description: The relative value to the customer or to the business
       type: number
       edit:
+        isInline: true
         validation:
           expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
     - key: jira-wsjf-time-criticality-field
@@ -12,6 +13,7 @@ modules:
       description: The relative rate of delay cost over time
       type: number
       edit:
+        isInline: true
         validation:
           expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
     - key: jira-wsjf-opportunity-enablement-risk-reduction-field
@@ -19,6 +21,7 @@ modules:
       description: The relative value in enabling other valuable work or reducing risk
       type: number
       edit:
+        isInline: true
         validation:
           expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
     - key: jira-wsjf-job-size-field
@@ -26,8 +29,19 @@ modules:
       description: The relative job duration
       type: number
       edit:
+        isInline: true
         validation:
           expression: value == null || value == 1 || value == 2 || value == 3 || value == 5 || value == 8 || value == 13 || value == 20 || value == 40 || value == 100
+    - key: jira-wsjf-score-field
+      name: WSJF Score
+      description: The calculated WSJF score to be used for prioritization
+      type: number
+      readonly: true
+      view:
+        value:
+          function: calculateWSJF
+        formatter:
+          expression: "((value * 100) / 100)"
   jira:projectPage:
     - key: jira-wsjf-project-page
       resource: main
@@ -38,6 +52,8 @@ modules:
   function:
     - key: resolver
       handler: index.handler
+    - key: calculateWSJF
+      handler: backend/index.handleCalculateWSJFView
 permissions:
   scopes:
     - read:jira-work
